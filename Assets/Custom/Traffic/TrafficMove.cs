@@ -7,11 +7,6 @@ public class TrafficMove : MonoBehaviour
     [SerializeField] List<Waypoint> path = new List<Waypoint>();
     [SerializeField] [Range(0f,5f)] float speed = 1f;
     Traffic traffic;
-    GameObject spawner;
-
-    private void Awake() {
-        GameObject spawner = GameObject.FindGameObjectWithTag("TrafficSpawner");
-    }
 
     private void Start() {
         traffic = GetComponent<Traffic>();

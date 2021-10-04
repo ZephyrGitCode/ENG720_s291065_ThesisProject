@@ -8,6 +8,8 @@ TagManager:
   - Environment
   - Path
   - TrafficSpawner
+  - Path2
+  - Interactors
   layers:
   - Default
   - TransparentFX

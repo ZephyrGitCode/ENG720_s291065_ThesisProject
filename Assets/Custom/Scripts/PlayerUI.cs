@@ -10,7 +10,7 @@ public class PlayerUI : MonoBehaviour
         if (gameObject.tag == "Player" && other.gameObject.tag != "Hit" && other.gameObject.tag != "Environment")
         {
             hits++;
-            Debug.Log("You Have Hit Something: " + hits+ " "+other.gameObject.name);
+            //Debug.Log("You Have Hit Something: " + hits+ " "+other.gameObject.name);
         }
     }
 }

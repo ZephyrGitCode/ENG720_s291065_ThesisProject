@@ -623,6 +623,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Van_Interact
       objectReference: {fileID: 0}
+    - target: {fileID: 130278, guid: 94469aeaca2d49442af381840b70bb6c, type: 3}
+      propertyPath: m_TagString
+      value: Hitable
+      objectReference: {fileID: 0}
     - target: {fileID: 487146, guid: 94469aeaca2d49442af381840b70bb6c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.1

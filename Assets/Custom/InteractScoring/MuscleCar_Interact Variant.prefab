@@ -479,6 +479,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MuscleCar_Interact Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 141870, guid: edf6cb56e12fba648b2cf1e7dfa5bf88, type: 3}
+      propertyPath: m_TagString
+      value: Hitable
+      objectReference: {fileID: 0}
     - target: {fileID: 484704, guid: edf6cb56e12fba648b2cf1e7dfa5bf88, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.72

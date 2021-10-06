@@ -15,4 +15,14 @@ public class Pedestrian : MonoBehaviour
     {
         
     }
+
+    public void DestroySelf()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void ResetPosition()
+    {
+        gameObject.transform.position = new Vector3(8.371751f,0.4112847f,10.09316f);
+    }
 }

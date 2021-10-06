@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StopZone : MonoBehaviour
 {
-    public GamePlayLogic vehicleLogic;
+    private GamePlayLogic vehicleLogic;
     private void Awake() {
         vehicleLogic = FindObjectOfType<GamePlayLogic>();
     }

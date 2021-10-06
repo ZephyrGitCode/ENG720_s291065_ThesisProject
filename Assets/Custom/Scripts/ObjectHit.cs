@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ObjectHit : MonoBehaviour
 {
+
     // Collision code
     private void OnCollisionEnter(Collision other)
     {

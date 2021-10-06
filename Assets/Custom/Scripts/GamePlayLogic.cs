@@ -27,6 +27,9 @@ public class GamePlayLogic : MonoBehaviour
     // Win UI
     public Canvas WinUI;
 
+    // Fail UI
+    public Canvas FailUI;
+
     // Move objects
     public GameObject Car;
     public GameObject stopZone;
@@ -58,57 +61,6 @@ public class GamePlayLogic : MonoBehaviour
                 Car.transform.position += (Vector3.forward * Time.deltaTime) * 5f;
             }
         }
-    }
-
-    // Check Seat belt complete, move to checkpoint
-    public void SeatBeltCheck()
-    {
-        if (beltinout == true){
-            // Disable UI canvas
-            SBCanvas.enabled = false;
-            
-            // Slowly move car towards the next player path object
-            StartCoroutine(GoToStop());
-        }
-    }
-
-    IEnumerator GoToStop()
-    {
-        // Slowly move car towards stop sign
-        Vector3 startPosition = Car.transform.position;
-        Vector3 endPosition = new Vector3(-0.35f,0.549f,18.59f);
-        //Vector3 endPosition = StopRoad.transform.position;
-        float travelPercent = 0f;
-
-        while(travelPercent < 1f)
-        {
-            travelPercent += Time.deltaTime * 0.3f; // Speed
-            Car.transform.position = Vector3.Lerp(startPosition, endPosition, travelPercent);
-            yield return new WaitForEndOfFrame();
-        }
-        StopUI.gameObject.SetActive(true);
-    }
-
-    public void PressGo()
-    {
-        StartCoroutine(GoToPass());
-    }
-    
-    IEnumerator GoToPass()
-    {
-        // Slowly move car towards stop sign
-        Vector3 startPosition = Car.transform.position;
-        Vector3 endPosition = new Vector3(-0.35f,0.549f,35.47f);
-        //Vector3 endPosition = StopRoad.transform.position;
-        float travelPercent = 0f;
-
-        while(travelPercent < 1f)
-        {
-            travelPercent += Time.deltaTime * 0.2f; // Speed
-            Car.transform.position = Vector3.Lerp(startPosition, endPosition, travelPercent);
-            yield return new WaitForEndOfFrame();
-        }
-        WinUI.gameObject.SetActive(true);
     }
 
     // Move UI and open new one
@@ -150,15 +102,85 @@ public class GamePlayLogic : MonoBehaviour
         Debug.Log("Beltout - Done");
     }
 
+    // Check Seat belt complete, move to checkpoint
+    public void SeatBeltCheck()
+    {
+        if (beltinout == true){
+            // Disable UI canvas
+            SBCanvas.enabled = false;
+            
+            // Slowly move car towards the next player path object
+            StartCoroutine(GoToStop());
+        }
+    }
+
+    IEnumerator GoToStop()
+    {
+        // Slowly move car towards stop sign
+        Vector3 startPosition = Car.transform.position;
+        Vector3 endPosition = new Vector3(-10.14f,0.27f,19f);
+        float travelPercent = 0f;
+
+        while(travelPercent < 1f)
+        {
+            travelPercent += Time.deltaTime * 0.3f; // Speed
+            Car.transform.position = Vector3.Lerp(startPosition, endPosition, travelPercent);
+            yield return new WaitForEndOfFrame();
+        }
+        StopUI.gameObject.SetActive(true);
+    }
+
+    public void PressGo()
+    {
+        StopUI.gameObject.SetActive(false);
+        StartCoroutine(GoToPass());
+    }
+    
+    IEnumerator GoToPass()
+    {
+        // Slowly move car towards stop sign
+        Vector3 startPosition = Car.transform.position;
+        Vector3 endPosition = new Vector3(-10.14f,0.27f,35.47f);
+        //Vector3 endPosition = StopRoad.transform.position;
+        float travelPercent = 0f;
+
+        while(travelPercent < 1f)
+        {
+            travelPercent += Time.deltaTime * 0.2f; // Speed
+            Car.transform.position = Vector3.Lerp(startPosition, endPosition, travelPercent);
+            yield return new WaitForEndOfFrame();
+        }
+        WinUI.gameObject.SetActive(true);
+    }
+
+
     public void MenuScene()
     {
+        if(Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+        }
         SceneManager.LoadScene("MainMenu");
     }
 
     public void RestartScene()
     {
+        if(Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+        }
         string currentScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentScene);
+    }
+
+
+    public void HitSomething()
+    {
+        //Make the level fail
+        Debug.Log("Hit something!");
+        Time.timeScale = 0; // stop time
+        FailUI.gameObject.SetActive(true);
+        // Show menu
     }
 
     /* Code for 2 -----------------------------------------------------------------*/
@@ -193,6 +215,7 @@ public class GamePlayLogic : MonoBehaviour
 
     public void PressGo2()
     {
+        StopUI.gameObject.SetActive(false);
         StartCoroutine(GoToPass2());
     }
 
@@ -227,7 +250,8 @@ public class GamePlayLogic : MonoBehaviour
             stopButton.SetActive(true);
         }
     }
-        public void PressStop()
+    
+    public void PressStop()
     {
         if(vehicleStopped==false && enableStop==true){
             // stop vehicle
@@ -291,6 +315,7 @@ public class GamePlayLogic : MonoBehaviour
 
     public void PressGo3()
     {
+        StopUI.gameObject.SetActive(false);
         StartCoroutine(GoToPass3());
     }
 
@@ -327,7 +352,7 @@ public class GamePlayLogic : MonoBehaviour
     {
         // Slowly move car to first stop
         Vector3 startPosition = Car.transform.position;
-        Vector3 endPosition = new Vector3(-0.35f,0.549f,18.59f);
+        Vector3 endPosition = new Vector3(13.8f,0.549f,-0.51f);
         //Vector3 endPosition = StopRoad.transform.position;
         float travelPercent = 0f;
 
@@ -339,10 +364,11 @@ public class GamePlayLogic : MonoBehaviour
         }
 
         // Rotate car left
+        Car.transform.Rotate(0f,-90f,0f);
 
         // Slowly move car to second stop
         startPosition = Car.transform.position;
-        endPosition = new Vector3(-0.35f,0.549f,18.59f);
+        endPosition = new Vector3(-0.35f,0.549f,0.38f);
         //Vector3 endPosition = StopRoad.transform.position;
         travelPercent = 0f;
 
@@ -354,42 +380,23 @@ public class GamePlayLogic : MonoBehaviour
         }
 
         // Rotate car right
-
-        // Slowly move car to third stop
-        startPosition = Car.transform.position;
-        endPosition = new Vector3(-0.35f,0.549f,18.59f);
-        //Vector3 endPosition = StopRoad.transform.position;
-        travelPercent = 0f;
-
-        while(travelPercent < 1f)
-        {
-            travelPercent += Time.deltaTime * 0.3f; // Speed
-            Car.transform.position = Vector3.Lerp(startPosition, endPosition, travelPercent);
-            yield return new WaitForEndOfFrame();
-        }
-
+        Car.transform.Rotate(0f,90f,0f);
 
         // Once in position, Enable vehicle to move, enable stop button.
         stopPressed = false;
         stopButton.SetActive(true);
-        StartCoroutine(GoToStop4_Crossing());
     }
-
-    IEnumerator GoToStop4_Crossing()
+    
+    public void PressStop4()
     {
-        // Slowly move car towards stop sign
-        Vector3 startPosition = Car.transform.position;
-        Vector3 endPosition = new Vector3(-0.35f,0.549f,18.59f);
-        //Vector3 endPosition = StopRoad.transform.position;
-        float travelPercent = 0f;
+        if(vehicleStopped==false && enableStop==true){
+            // stop vehicle
+            stopPressed = !stopPressed;
+            vehicleStopped = true;
 
-        while(travelPercent < 1f)
-        {
-            travelPercent += Time.deltaTime * 0.3f; // Speed
-            Car.transform.position = Vector3.Lerp(startPosition, endPosition, travelPercent);
-            yield return new WaitForEndOfFrame();
+            //Check vehicle center in snapzone
+            StopInZone4();
         }
-        StopUI.gameObject.SetActive(true);
     }
 
     public void StopInZone4()
@@ -397,7 +404,7 @@ public class GamePlayLogic : MonoBehaviour
         // get car's location x minus from stopzone location x
         float stopZonePos = stopZone.transform.position.z;
         float carPos = Car.transform.position.z;
-        float perfectStop = 14.59f;
+        float perfectStop = 11.35f;
         
         // 18.59f is perfect stop
         float accuracy = (carPos - perfectStop);
@@ -420,12 +427,29 @@ public class GamePlayLogic : MonoBehaviour
         // Build a range, if in range good, if out of range bad.
         // if good: re-center car, wait for cars and press button.
         // if fail, restart level
+        StartCoroutine(GoToStop4_correct());
+    }
 
+    IEnumerator GoToStop4_correct()
+    {
+        // Slowly move car to first stop
+        Vector3 startPosition = Car.transform.position;
+        Vector3 endPosition = new Vector3(-0.35f,0.549f,11.43f);
+        //Vector3 endPosition = StopRoad.transform.position;
+        float travelPercent = 0f;
+
+        while(travelPercent < 1f)
+        {
+            travelPercent += Time.deltaTime * 0.3f; // Speed
+            Car.transform.position = Vector3.Lerp(startPosition, endPosition, travelPercent);
+            yield return new WaitForEndOfFrame();
+        }
         StopUI.gameObject.SetActive(true);
     }
     
     public void PressGo4()
     {
+        StopUI.gameObject.SetActive(false);
         StartCoroutine(GoToPass4());
     }
     
@@ -433,13 +457,13 @@ public class GamePlayLogic : MonoBehaviour
     {
         // Slowly move car towards stop sign
         Vector3 startPosition = Car.transform.position;
-        Vector3 endPosition = new Vector3(-0.35f,0.549f,35.47f);
+        Vector3 endPosition = new Vector3(-0.35f,0.549f,45f);
         //Vector3 endPosition = StopRoad.transform.position;
         float travelPercent = 0f;
 
         while(travelPercent < 1f)
         {
-            travelPercent += Time.deltaTime * 0.2f; // Speed
+            travelPercent += Time.deltaTime * 0.3f; // Speed
             Car.transform.position = Vector3.Lerp(startPosition, endPosition, travelPercent);
             yield return new WaitForEndOfFrame();
         }
@@ -447,9 +471,11 @@ public class GamePlayLogic : MonoBehaviour
     }
 
     /* Code for Riht of Way 5 Simple -----------------------------------------------------------------*/
-    public GameObject[] interactors;
+    private GameObject[] interactors;
 
     public List<GameObject> vehicleOrder;
+
+    public Canvas checkAnswersCanvas;
 
     private float carSelect = 1f;
 
@@ -480,9 +506,6 @@ public class GamePlayLogic : MonoBehaviour
 
     public void VehicleSelect(GameObject Car) {
         Debug.Log("Hit Car: "+Car);
-
-        
-
         Transform orderText = Car.transform.Find("Car_Interact/Panel/CarBtn/OrderText");
         TextMeshProUGUI orderTextUi = orderText.GetComponent<TextMeshProUGUI>();
         orderTextUi.text = "Order: "+carSelect;
@@ -491,11 +514,10 @@ public class GamePlayLogic : MonoBehaviour
         if (carSelect==5f)
         {
             carSelect = 1f;
-            // reveal check answer button?
+            checkAnswersCanvas.gameObject.SetActive(true);
+            // reveal check answer button
         }
         
-        
-
         //ColorBlock cb = RoadButton.colors;
         //cb.normalColor = new Color(0.2f, 0.7176471f, 0.2627451f, 0.3137255f);
         //RoadButton.colors = cb;
@@ -507,6 +529,10 @@ public class GamePlayLogic : MonoBehaviour
 
     public void CheckAnswer()
     {
+        float counter = 1;
+        float correct = 0;
+        float incorrect = 0;
+        checkAnswersCanvas.gameObject.SetActive(false);
 
         foreach (GameObject Car in vehicleOrder)
         {
@@ -514,14 +540,177 @@ public class GamePlayLogic : MonoBehaviour
             TextMeshProUGUI orderTextUi = orderText.GetComponent<TextMeshProUGUI>();
             if(orderTextUi != null)
             {
+                string checkstring = orderTextUi.text;
+                Debug.Log("checkstring: "+checkstring[checkstring.Length-1].ToString());
 
+                if(checkstring[checkstring.Length-1].ToString() == counter.ToString()) //counter.ToString()) Or 2
+                {
+                    // if last character matches counter, then correct
+                    Debug.Log("Correct");
+                    correct++;
+                }else
+                {
+                    // if last character doesn't match, incorrect
+                    Debug.Log("incorrect");
+                    incorrect++;
+                }
+                counter++;
+            }
+            WinUI.gameObject.SetActive(true);
+            Transform winTransform = WinUI.transform.Find("Panel/WinDesc");
+            TextMeshProUGUI winText = winTransform.GetComponent<TextMeshProUGUI>();
+            winText.text = "Score: "+correct+"/4 \n";
+            if (correct == 4){
+                // Player wins the level
+                winText.text = winText.text+"Success!";
+                //Complete!
+            }else
+            {
+                // player lose UI, show score and restart/menu buttons.
+                winText.text = winText.text+"Fail!";
             }
         }
+    }
 
-        // foreach vhicle in predefined list,
-        // muscle value = 1 correct, else incorrect
-        // if matches
-        // else
+    /* code for 6 -----------------------------------------------------------------*/
+
+    // Check Seat belt complete, move to checkpoint
+    public void SeatBeltCheck6()
+    {
+        if (beltinout == true){
+            // Disable UI canvas
+            SBCanvas.enabled = false;
+            
+            // Enable vehicle to move, enable stop button.
+            stopPressed = false;
+            stopButton.SetActive(true);
+        }
     }
     
+    public void PressStop6()
+    {
+        if(vehicleStopped==false && enableStop==true){
+            // stop vehicle
+            stopPressed = !stopPressed;
+            vehicleStopped = true;
+
+            //Check vehicle center in snapzone, give rating
+            StopInZone6();
+        }
+    }
+
+    public void StopInZone6()
+    {
+        // get car's location x minus from stopzone location x
+        float stopZonePos = stopZone.transform.position.z;
+        float carPos = Car.transform.position.z;
+        float perfectStop = 26.59f;
+        
+        // 18.59f is perfect stop
+        float accuracy = (carPos - perfectStop);
+        Debug.Log("Car Position: "+carPos+" | Perfect stop "+perfectStop+" | Accuracy: "+accuracy);
+
+        /*
+        switch (accuracy)
+        {
+            case accuracy<-5:
+                // Less than value is very bad
+                break;
+            case accuracy<-2:
+                // Less than value is very bad
+                break;
+            default:
+                break;
+        }
+        */
+
+        // Build a range, if in range good, if out of range bad.
+        // if good: re-center car, wait for cars and press button.
+        // if fail, restart level
+
+        //StopUI.gameObject.SetActive(true);
+        StartCoroutine(GoToStop6());
+    }
+
+    IEnumerator GoToStop6()
+    {
+        // Slowly move car towards stop sign
+        Vector3 startPosition = Car.transform.position;
+        Vector3 endPosition = new Vector3(11.23f,0.27f,26.59f);
+        //Vector3 endPosition = StopRoad.transform.position;
+        float travelPercent = 0f;
+
+        while(travelPercent < 1f)
+        {
+            travelPercent += Time.deltaTime * 0.3f; // Speed
+            Car.transform.position = Vector3.Lerp(startPosition, endPosition, travelPercent);
+            yield return new WaitForEndOfFrame();
+        }
+        interactors = GameObject.FindGameObjectsWithTag("Interactors");
+
+        foreach(GameObject interactor in interactors)
+        {
+            if(interactor != null)
+            {
+                interactor.GetComponent<Button>().enabled = true;
+                interactor.GetComponent<Image>().enabled = true;
+            }
+        }
+    }
+
+    public void CarGo()
+    {
+        StartCoroutine(DelayedAnimation());
+    }
+
+    // The delay coroutine
+     IEnumerator DelayedAnimation()
+     {
+        yield return new WaitForSeconds(4f);
+        StopUI.gameObject.SetActive(true);
+     }
+
+
+    public void PressGo6()
+    {
+        StartCoroutine(GoToPass6());
+    }
+
+    IEnumerator GoToPass6()
+    {
+        StopUI.gameObject.SetActive(false);
+        // rotate car slightly
+        Car.transform.Rotate(0f,15f,0f);
+        // Slowly move car towards stop sign
+        Vector3 startPosition = Car.transform.position;
+        Vector3 endPosition = new Vector3(15.64f,0.27f,44.33f);
+        //Vector3 endPosition = StopRoad.transform.position;
+        float travelPercent = 0f;
+
+        while(travelPercent < 1f)
+        {
+            travelPercent += Time.deltaTime * 0.2f; // Speed
+            Car.transform.position = Vector3.Lerp(startPosition, endPosition, travelPercent);
+            yield return new WaitForEndOfFrame();
+        }
+        Car.transform.Rotate(0f,75f,0f);
+        StartCoroutine(GoToPass6_2());
+    }
+
+    IEnumerator GoToPass6_2()
+    {
+        // Slowly move car towards stop sign
+        Vector3 startPosition = Car.transform.position;
+        Vector3 endPosition = new Vector3(24.77f,0.27f,45.42f);
+        //Vector3 endPosition = StopRoad.transform.position;
+        float travelPercent = 0f;
+
+        while(travelPercent < 1f)
+        {
+            travelPercent += Time.deltaTime * 0.2f; // Speed
+            Car.transform.position = Vector3.Lerp(startPosition, endPosition, travelPercent);
+            yield return new WaitForEndOfFrame();
+        }
+        WinUI.gameObject.SetActive(true);
+    }
 }

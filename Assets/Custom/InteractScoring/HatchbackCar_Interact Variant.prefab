@@ -479,6 +479,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HatchbackCar_Interact Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 127632, guid: 0383b854a926f1643b20f9c7cdb2e4de, type: 3}
+      propertyPath: m_TagString
+      value: Hitable
+      objectReference: {fileID: 0}
     - target: {fileID: 411938, guid: 0383b854a926f1643b20f9c7cdb2e4de, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.8517404

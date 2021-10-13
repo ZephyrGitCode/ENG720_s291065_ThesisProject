@@ -44,11 +44,15 @@ public class GamePlayLogic : MonoBehaviour
 
     public bool enableStop = false;
 
+    CustomSettings customSettings;
+
     private void Awake() {
         stopButton = GameObject.Find("BButton.R");
         stopButton.SetActive(false);
         stopZone = GameObject.Find("StopZone");
         stopPressed = true;
+
+        customSettings = FindObjectOfType<CustomSettings>();
     }
 
     private void Update() {
@@ -151,6 +155,35 @@ public class GamePlayLogic : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         WinUI.gameObject.SetActive(true);
+    }
+
+    void StopZoneRange(float accuracy)
+    {
+        // if Accuracy is more than 0, less than 5
+        if (accuracy > -10f && accuracy < 10f)
+        {
+            if (accuracy > -10f && accuracy < -5f)
+            {
+                // stopped way too far forward
+            }
+            if (accuracy > -5f && accuracy < -1f){
+                // stopped slightly too far forward
+            }
+            if (accuracy < 10f && accuracy > 5f)
+            {
+                // stopped way too far backward
+            }
+            if (accuracy < 5f && accuracy > 1f){
+                // stopped slightly too far forward
+            }
+        }else
+        {
+            // bad, restart level?
+            RestartScene();
+        }
+
+        // Build a range, if in range good, if out of range bad.
+        
     }
 
 
@@ -273,26 +306,14 @@ public class GamePlayLogic : MonoBehaviour
         // 18.59f is perfect stop
         float accuracy = (carPos - perfectStop);
         Debug.Log("Car Position: "+carPos+" | Perfect stop "+perfectStop+" | Accuracy: "+accuracy);
+        
+        // Save the accuracy
+        customSettings.SaveStop(accuracy);
 
-        /*
-        switch (accuracy)
-        {
-            case accuracy<-5:
-                // Less than value is very bad
-                break;
-            case accuracy<-2:
-                // Less than value is very bad
-                break;
-            default:
-                break;
-        }
-        */
+        // Check value in range
+        StopZoneRange(accuracy);
 
-        // Build a range, if in range good, if out of range bad.
-        // if good: re-center car, wait for cars and press button.
-        // if fail, restart level
-
-        //StopUI.gameObject.SetActive(true);
+        // Re-centers car, wait for cars and press button.
         StartCoroutine(GoToStop3());
     }
 
@@ -410,23 +431,13 @@ public class GamePlayLogic : MonoBehaviour
         float accuracy = (carPos - perfectStop);
         Debug.Log("Car Position: "+carPos+" | Perfect stop "+perfectStop+" | Accuracy: "+accuracy);
 
-        /*
-        switch (accuracy)
-        {
-            case accuracy<-5:
-                // Less than value is very bad
-                break;
-            case accuracy<-2:
-                // Less than value is very bad
-                break;
-            default:
-                break;
-        }
-        */
+        // Save the accuracy
+        customSettings.SaveStop(accuracy);
 
-        // Build a range, if in range good, if out of range bad.
-        // if good: re-center car, wait for cars and press button.
-        // if fail, restart level
+        // Check value in range
+        StopZoneRange(accuracy);
+
+        // Re-centers car, wait for cars and press button.
         StartCoroutine(GoToStop4_correct());
     }
 
@@ -610,25 +621,13 @@ public class GamePlayLogic : MonoBehaviour
         float accuracy = (carPos - perfectStop);
         Debug.Log("Car Position: "+carPos+" | Perfect stop "+perfectStop+" | Accuracy: "+accuracy);
 
-        /*
-        switch (accuracy)
-        {
-            case accuracy<-5:
-                // Less than value is very bad
-                break;
-            case accuracy<-2:
-                // Less than value is very bad
-                break;
-            default:
-                break;
-        }
-        */
+        // Save the accuracy
+        customSettings.SaveStop(accuracy);
 
-        // Build a range, if in range good, if out of range bad.
-        // if good: re-center car, wait for cars and press button.
-        // if fail, restart level
+        // Check value in range
+        StopZoneRange(accuracy);
 
-        //StopUI.gameObject.SetActive(true);
+        // Re-centers car, wait for cars and press button.
         StartCoroutine(GoToStop6());
     }
 

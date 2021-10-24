@@ -48,18 +48,31 @@ public class CustomSettings : MonoBehaviour
 
     /* Custom Data --------------------------------------------------------- */
     [System.Serializable]
-    public class CustomData
+    public class CustomDataStopAcc
     {
         public List<float> accuracy;
 
-        public CustomData()
+        public CustomDataStopAcc()
         {
             // accuracy list
             accuracy = new List<float>() {};
         }
     }
 
-    public CustomData customData;
+    [System.Serializable]
+    public class CustomDataCollisions
+    {
+        public List<float> collisions;
+
+        public CustomDataCollisions()
+        {
+            // accuracy list
+            collisions = new List<float>() {};
+        }
+    }
+
+    public CustomDataStopAcc customDataStopAcc;
+    public CustomDataCollisions customDataCollisions;
     public string identifier;
 
     /* Saving code --------------------------------------------------------- */
@@ -77,17 +90,40 @@ public class CustomSettings : MonoBehaviour
         saveAccuracy.Add(accuracy);
 
         // Save custom Data
-        SaveGame.Save<CustomData>(identifier, customData);
+        SaveGame.Save<CustomDataStopAcc>(identifier, customDataStopAcc);
+    }
+
+    public void SaveCollision(int objectHit)
+    {
+        // Called from GamePlayLogic: collides with object, gives int, adds collision
+        // 1 = pedestrian, 2 = cars
+
+        // Load previous save data
+        List<float> saveCollision = LoadCollisions();
+        
+        // Append to previous save data
+        saveCollision.Add(objectHit);
+
+        // Save custom Data
+        SaveGame.Save<CustomDataCollisions>("collisions", customDataCollisions);
     }
 
     /* Loading Code --------------------------------------------------------- */
     public List<float> LoadAccuracy(string sceneName)
     {
-        customData = SaveGame.Load<CustomData>(
+        customDataStopAcc = SaveGame.Load<CustomDataStopAcc>(
             sceneName,
-            new CustomData());
-        List<float> saveAccuracy = customData.accuracy;
+            new CustomDataStopAcc());
+        List<float> saveAccuracy = customDataStopAcc.accuracy;
         return saveAccuracy;
+    }
+
+    public List<float> LoadCollisions()
+    {
+        // load collision data
+        customDataCollisions = SaveGame.Load<CustomDataCollisions>("collisions", new CustomDataCollisions());
+        List<float> saveCollisions = customDataCollisions.collisions;
+        return saveCollisions;
     }
     
     List<string> sceneList = new List<string>() {"1_ZebraCrossingSimple", "2_ZebraCrossingAdvanced", "3_StopSignSimple", "4_StopSignAdvanced", "5_RightofWaySimple", "6_RightofWaySimple"};
@@ -95,12 +131,12 @@ public class CustomSettings : MonoBehaviour
     public List<float> LoadAccuracyNum(int StatNum)
     {
         // Load Custom Data
-        customData = SaveGame.Load<CustomData>(
+        customDataStopAcc = SaveGame.Load<CustomDataStopAcc>(
                 sceneList[StatNum],
-                new CustomData());
+                new CustomDataStopAcc());
 
         // Load data into list
-        List<float> stoppingStats = customData.accuracy;
+        List<float> stoppingStats = customDataStopAcc.accuracy;
 
         // Return list to statistics
         return stoppingStats;
@@ -112,10 +148,10 @@ public class CustomSettings : MonoBehaviour
         foreach (string sceneName in sceneList)
         {
             // foreach scenename in list, get accuracy data, store into list of lists.
-            customData = SaveGame.Load<CustomData>(
+            customDataStopAcc = SaveGame.Load<CustomDataStopAcc>(
                 sceneName,
-                new CustomData());
-            stoppingStats.Add(customData.accuracy);
+                new CustomDataStopAcc());
+            stoppingStats.Add(customDataStopAcc.accuracy);
         }
         return stoppingStats;
     }

@@ -16,8 +16,20 @@ public class PlayerUI : MonoBehaviour
         if (gameObject.tag == "Player" && other.gameObject.tag == "Hitable")
         {
             hits++;
-            Debug.Log("You Have Hit Something: " + hits+ " "+other.gameObject.name);
-            vehicleLogic.HitSomething();
+            string stringObject = other.gameObject.name;
+            Debug.Log("You Have Hit Something: " + hits+ " "+ stringObject);
+            // other is car or pedestrian?
+            if(stringObject.Contains("Character"))
+            {
+                // 1 = Pedestrian
+                int objectHit = 1;
+                vehicleLogic.HitSomething(objectHit);
+            }else
+            {
+                // 2 = Car
+                int objectHit = 2;
+                vehicleLogic.HitSomething(objectHit);
+            }
         }
     }
 }

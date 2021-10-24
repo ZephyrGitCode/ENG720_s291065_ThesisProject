@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System;
+using UnityEngine.VR;
 
 public class GamePlayLogic : MonoBehaviour
 {
@@ -47,6 +48,7 @@ public class GamePlayLogic : MonoBehaviour
     CustomSettings customSettings;
 
     private void Awake() {
+        UnityEngine.XR.InputTracking.Recenter();
         stopButton = GameObject.Find("BButton.R");
         stopButton.SetActive(false);
         stopZone = GameObject.Find("StopZone");
@@ -105,6 +107,42 @@ public class GamePlayLogic : MonoBehaviour
         checktext.text = "Seat belt please";
         Debug.Log("Beltout - Done");
     }
+
+    public void MenuScene()
+    {
+        if(Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+        }
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void RestartScene()
+    {
+        if(Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+        }
+        string currentScene = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentScene);
+    }
+
+    public void HitSomething(int objectHit)
+    {
+        //Make the level fail
+        Debug.Log("Hit something!");
+
+        // Call custom settings, save object hit
+        customSettings.SaveCollision(1);
+        
+        //Stop time
+        Time.timeScale = 0;
+
+        // Show fail UI
+        FailUI.gameObject.SetActive(true);
+    }
+
+    /* Main Scene logic ----------------------------------------------------------------------------------- */
 
     // Check Seat belt complete, move to checkpoint
     public void SeatBeltCheck()
@@ -184,36 +222,6 @@ public class GamePlayLogic : MonoBehaviour
 
         // Build a range, if in range good, if out of range bad.
         
-    }
-
-
-    public void MenuScene()
-    {
-        if(Time.timeScale == 0)
-        {
-            Time.timeScale = 1;
-        }
-        SceneManager.LoadScene("MainMenu");
-    }
-
-    public void RestartScene()
-    {
-        if(Time.timeScale == 0)
-        {
-            Time.timeScale = 1;
-        }
-        string currentScene = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(currentScene);
-    }
-
-
-    public void HitSomething()
-    {
-        //Make the level fail
-        Debug.Log("Hit something!");
-        Time.timeScale = 0; // stop time
-        FailUI.gameObject.SetActive(true);
-        // Show menu
     }
 
     /* Code for 2 -----------------------------------------------------------------*/

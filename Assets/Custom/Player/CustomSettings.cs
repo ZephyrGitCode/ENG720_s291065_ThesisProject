@@ -9,7 +9,6 @@ public class CustomSettings : MonoBehaviour
 {
     LaserPointer laserPointer;
     LineRenderer lineRenderer;
-
     DrawStatistics drawStatistics;
 
     public UnityEngine.Material[] MatList;
@@ -48,14 +47,17 @@ public class CustomSettings : MonoBehaviour
 
     /* Custom Data --------------------------------------------------------- */
     [System.Serializable]
-    public class CustomDataStopAcc
+    public class CustomDataScene
     {
         public List<float> accuracy;
 
-        public CustomDataStopAcc()
+        public List<float> objectives;
+
+        public CustomDataScene()
         {
             // accuracy list
             accuracy = new List<float>() {};
+            objectives = new List<float>() {};
         }
     }
 
@@ -71,7 +73,7 @@ public class CustomSettings : MonoBehaviour
         }
     }
 
-    public CustomDataStopAcc customDataStopAcc;
+    public CustomDataScene customDataScene;
     public CustomDataCollisions customDataCollisions;
     public string identifier;
 
@@ -90,7 +92,7 @@ public class CustomSettings : MonoBehaviour
         saveAccuracy.Add(accuracy);
 
         // Save custom Data
-        SaveGame.Save<CustomDataStopAcc>(identifier, customDataStopAcc);
+        SaveGame.Save<CustomDataScene>(identifier, customDataScene);
     }
 
     public void SaveCollision(int objectHit)
@@ -108,13 +110,31 @@ public class CustomSettings : MonoBehaviour
         SaveGame.Save<CustomDataCollisions>("collisions", customDataCollisions);
     }
 
+    public void SaveObjective(int objectiveCount)
+    {
+        // Called from GamePlayLogic: User completes level, takes count of objectives for scene, saves objective against current scene
+        // Saves count of objectives at scene win.
+
+        // Get active scene as identifer for save data
+        identifier = SceneManager.GetActiveScene().name;
+
+        // Load previous save data
+        List<float> saveObjective = LoadObjectives(identifier);
+
+        // Append to previous save data
+        saveObjective.Add(objectiveCount);
+
+        // Save custom Data
+        SaveGame.Save<CustomDataScene>(identifier, customDataScene);
+    }
+
     /* Loading Code --------------------------------------------------------- */
     public List<float> LoadAccuracy(string sceneName)
     {
-        customDataStopAcc = SaveGame.Load<CustomDataStopAcc>(
+        customDataScene = SaveGame.Load<CustomDataScene>(
             sceneName,
-            new CustomDataStopAcc());
-        List<float> saveAccuracy = customDataStopAcc.accuracy;
+            new CustomDataScene());
+        List<float> saveAccuracy = customDataScene.accuracy;
         return saveAccuracy;
     }
 
@@ -125,21 +145,44 @@ public class CustomSettings : MonoBehaviour
         List<float> saveCollisions = customDataCollisions.collisions;
         return saveCollisions;
     }
+
+    public List<float> LoadObjectives(string sceneName)
+    {
+        customDataScene = SaveGame.Load<CustomDataScene>(
+            sceneName,
+            new CustomDataScene());
+        List<float> saveObjective = customDataScene.objectives;
+        return saveObjective;
+    }
     
     List<string> sceneList = new List<string>() {"1_ZebraCrossingSimple", "2_ZebraCrossingAdvanced", "3_StopSignSimple", "4_StopSignAdvanced", "5_RightofWaySimple", "6_RightofWaySimple"};
     
     public List<float> LoadAccuracyNum(int StatNum)
     {
         // Load Custom Data
-        customDataStopAcc = SaveGame.Load<CustomDataStopAcc>(
+        customDataScene = SaveGame.Load<CustomDataScene>(
                 sceneList[StatNum],
-                new CustomDataStopAcc());
+                new CustomDataScene());
 
         // Load data into list
-        List<float> stoppingStats = customDataStopAcc.accuracy;
+        List<float> stoppingStats = customDataScene.accuracy;
 
         // Return list to statistics
         return stoppingStats;
+    }
+
+    public List<float> LoadObjectiveNum(int StatNum)
+    {
+        // Load Custom Data
+        customDataScene = SaveGame.Load<CustomDataScene>(
+                sceneList[StatNum],
+                new CustomDataScene());
+
+        // Load data into list
+        List<float> objectiveStats = customDataScene.objectives;
+
+        // Return list to statistics
+        return objectiveStats;
     }
 
     public List<List<float>> LoadAccuracyAll()
@@ -148,10 +191,10 @@ public class CustomSettings : MonoBehaviour
         foreach (string sceneName in sceneList)
         {
             // foreach scenename in list, get accuracy data, store into list of lists.
-            customDataStopAcc = SaveGame.Load<CustomDataStopAcc>(
+            customDataScene = SaveGame.Load<CustomDataScene>(
                 sceneName,
-                new CustomDataStopAcc());
-            stoppingStats.Add(customDataStopAcc.accuracy);
+                new CustomDataScene());
+            stoppingStats.Add(customDataScene.accuracy);
         }
         return stoppingStats;
     }
@@ -192,9 +235,16 @@ public class CustomSettings : MonoBehaviour
     /* Clearing Data Code --------------------------------------------------------- */
     public void ClearData(int sceneNum) {
         // Clear data for certain scene
+        //SaveGame.Delete(sceneNum);
+    }
+
+    public void ClearAllData() {
+        // Clears all data
+        SaveGame.Clear();
     }
 
     private void Start() {
+        //LoadCollisions();
         //DebugData();
     }
 

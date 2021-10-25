@@ -21477,6 +21477,7 @@ Transform:
   - {fileID: 1635455063}
   - {fileID: 1437036529}
   - {fileID: 1984795106}
+  - {fileID: 919923878}
   - {fileID: 363685248}
   - {fileID: 407551750}
   - {fileID: 368806893}
@@ -21488,9 +21489,8 @@ Transform:
   - {fileID: 1893921588}
   - {fileID: 1248188567}
   - {fileID: 2101344756}
-  - {fileID: 919923878}
-  - {fileID: 1515382525}
   - {fileID: 357261237}
+  - {fileID: 1515382525}
   m_Father: {fileID: 842581758}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -35520,7 +35520,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1850074672}
     - target: {fileID: 58801161610027698, guid: f7d06de4cba7bc242bdb83c7284639b3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -35629,6 +35629,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 969820876}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &969820878 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 58801161610027698, guid: f7d06de4cba7bc242bdb83c7284639b3,
+    type: 3}
+  m_PrefabInstance: {fileID: 969820876}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &970055256
 GameObject:
   m_ObjectHideFlags: 0
@@ -66233,8 +66245,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SignButton: {fileID: 368919977}
-  RoadButton: {fileID: 0}
+  RoadButton: {fileID: 969820878}
   sceneScore: {fileID: 1249112222}
+  stopSignBool: 0
+  road: 0
   score: 0
 --- !u!4 &1850074673
 Transform:

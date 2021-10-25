@@ -13,6 +13,7 @@ public class PlayerUI : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision other) {
+        Debug.Log("Hit: "+ other.gameObject.tag);
         if (gameObject.tag == "Player" && other.gameObject.tag == "Hitable")
         {
             hits++;

@@ -46,6 +46,7 @@ public class GamePlayLogic : MonoBehaviour
     public bool enableStop = false;
 
     CustomSettings customSettings;
+    InteractLogic interactLogic;
 
     private void Awake() {
         UnityEngine.XR.InputTracking.Recenter();
@@ -55,6 +56,7 @@ public class GamePlayLogic : MonoBehaviour
         stopPressed = true;
 
         customSettings = FindObjectOfType<CustomSettings>();
+        interactLogic = FindObjectOfType<InteractLogic>();
     }
 
     private void Update() {
@@ -117,6 +119,15 @@ public class GamePlayLogic : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    public void NextScene(string sceneName)
+    {
+        if(Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+        }
+        SceneManager.LoadScene(sceneName);
+    }
+
     public void RestartScene()
     {
         if(Time.timeScale == 0)
@@ -133,7 +144,7 @@ public class GamePlayLogic : MonoBehaviour
         Debug.Log("Hit something!");
 
         // Call custom settings, save object hit
-        customSettings.SaveCollision(1);
+        customSettings.SaveCollision(objectHit);
         
         //Stop time
         Time.timeScale = 0;
@@ -165,7 +176,7 @@ public class GamePlayLogic : MonoBehaviour
 
         while(travelPercent < 1f)
         {
-            travelPercent += Time.deltaTime * 0.3f; // Speed
+            travelPercent += Time.deltaTime * 0.2f; // Speed
             Car.transform.position = Vector3.Lerp(startPosition, endPosition, travelPercent);
             yield return new WaitForEndOfFrame();
         }
@@ -363,6 +374,21 @@ public class GamePlayLogic : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         WinUI.gameObject.SetActive(true);
+
+        // get objectives score
+        bool roadScore = interactLogic.road;
+        bool stopSignScore = interactLogic.stopSignBool;
+        int objectiveCount=0;
+        if (stopSignScore == true)
+        {
+            objectiveCount++;
+        }
+        if (roadScore == true)
+        {
+            objectiveCount++;
+        }
+        // Save number of objectives
+        customSettings.SaveObjective(objectiveCount);
     }
 
     /* Code for StopSign 4 Advanced -----------------------------------------------------------------*/
@@ -487,6 +513,21 @@ public class GamePlayLogic : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         WinUI.gameObject.SetActive(true);
+        
+        // get objectives score
+        bool roadScore = interactLogic.road;
+        bool stopSignScore = interactLogic.stopSignBool;
+        int objectiveCount=0;
+        if (stopSignScore == true)
+        {
+            objectiveCount++;
+        }
+        if (roadScore == true)
+        {
+            objectiveCount++;
+        }
+        // Save number of objectives
+        customSettings.SaveObjective(objectiveCount);
     }
 
     /* Code for Riht of Way 5 Simple -----------------------------------------------------------------*/
@@ -576,6 +617,8 @@ public class GamePlayLogic : MonoBehaviour
                 counter++;
             }
             WinUI.gameObject.SetActive(true);
+
+            // Show win UI panel
             Transform winTransform = WinUI.transform.Find("Panel/WinDesc");
             TextMeshProUGUI winText = winTransform.GetComponent<TextMeshProUGUI>();
             winText.text = "Score: "+correct+"/4 \n";
@@ -719,5 +762,20 @@ public class GamePlayLogic : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         WinUI.gameObject.SetActive(true);
+        
+        // get objectives score
+        bool roadScore = interactLogic.road;
+        bool stopSignScore = interactLogic.stopSignBool;
+        int objectiveCount=0;
+        if (stopSignScore == true)
+        {
+            objectiveCount++;
+        }
+        if (roadScore == true)
+        {
+            objectiveCount++;
+        }
+        // Save number of objectives
+        customSettings.SaveObjective(objectiveCount);
     }
 }

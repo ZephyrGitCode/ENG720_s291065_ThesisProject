@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3361564979105528232}
   m_Layer: 0
   m_Name: SM_Veh_Car_Muscle_Wheel_fr
-  m_TagString: Untagged
+  m_TagString: Hitable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 3406023668894515914}
   m_Layer: 0
   m_Name: SM_Veh_Car_Muscle_SteeringW
-  m_TagString: Untagged
+  m_TagString: Hitable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 3406023668894471352}
   m_Layer: 0
   m_Name: SM_Veh_Car_Muscle_Plates
-  m_TagString: Untagged
+  m_TagString: Hitable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 3358365660013426996}
   m_Layer: 0
   m_Name: SM_Veh_Car_Muscle_Wheel_fl
-  m_TagString: Untagged
+  m_TagString: Hitable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 3361489337084198860}
   m_Layer: 0
   m_Name: SM_Veh_Car_Muscle_Wheel_rr
-  m_TagString: Untagged
+  m_TagString: Hitable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -465,7 +465,7 @@ GameObject:
   - component: {fileID: 3360817498967609986}
   m_Layer: 0
   m_Name: SM_Veh_Car_Muscle_Wheel_rl
-  m_TagString: Untagged
+  m_TagString: Hitable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -559,6 +559,7 @@ GameObject:
   - component: {fileID: 3406023668895450880}
   - component: {fileID: 3406023668894041736}
   - component: {fileID: 3431859599523194412}
+  - component: {fileID: 8145480845074412483}
   m_Layer: 0
   m_Name: SM_Veh_Car_Muscle_Mover
   m_TagString: Hitable
@@ -646,11 +647,24 @@ MeshCollider:
   m_GameObject: {fileID: 3406023668896550048}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 823ed423ae6ba0d4589ddb8fe51e7f14, type: 3}
+--- !u!65 &8145480845074412483
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3406023668896550048}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.429984, y: 1.3140848, z: 5.642581}
+  m_Center: {x: 0.000000059604645, y: 0.8365443, z: 0.13018548}
 --- !u!1 &3406023668896560208
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,7 +679,7 @@ GameObject:
   - component: {fileID: 3406023668894519732}
   m_Layer: 0
   m_Name: SM_Veh_Car_Muscle_Glass
-  m_TagString: Untagged
+  m_TagString: Hitable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -744,7 +758,7 @@ GameObject:
   - component: {fileID: 892097578268326077}
   m_Layer: 0
   m_Name: TrafficMover
-  m_TagString: Untagged
+  m_TagString: Hitable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -834,7 +848,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9036762475406722994}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -846,12 +860,52 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 75079669255183472}
     m_Modifications:
+    - target: {fileID: 2428585461559259990, guid: 35e1332710ff7284eb2aa65add2a7497,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hitable
+      objectReference: {fileID: 0}
+    - target: {fileID: 5926013795964641229, guid: 35e1332710ff7284eb2aa65add2a7497,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hitable
+      objectReference: {fileID: 0}
     - target: {fileID: 5926013795964643133, guid: 35e1332710ff7284eb2aa65add2a7497,
         type: 3}
       propertyPath: m_Name
       value: SM_Veh_Car_Muscle_Mover
       objectReference: {fileID: 0}
     - target: {fileID: 5926013795964643133, guid: 35e1332710ff7284eb2aa65add2a7497,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hitable
+      objectReference: {fileID: 0}
+    - target: {fileID: 5926013795964661327, guid: 35e1332710ff7284eb2aa65add2a7497,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hitable
+      objectReference: {fileID: 0}
+    - target: {fileID: 5926013795964666979, guid: 35e1332710ff7284eb2aa65add2a7497,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hitable
+      objectReference: {fileID: 0}
+    - target: {fileID: 5926013795964670317, guid: 35e1332710ff7284eb2aa65add2a7497,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hitable
+      objectReference: {fileID: 0}
+    - target: {fileID: 5926013795964671305, guid: 35e1332710ff7284eb2aa65add2a7497,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hitable
+      objectReference: {fileID: 0}
+    - target: {fileID: 5926013795964678491, guid: 35e1332710ff7284eb2aa65add2a7497,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hitable
+      objectReference: {fileID: 0}
+    - target: {fileID: 5926013795964726723, guid: 35e1332710ff7284eb2aa65add2a7497,
         type: 3}
       propertyPath: m_TagString
       value: Hitable
@@ -919,6 +973,11 @@ PrefabInstance:
     - target: {fileID: 5969983385357487537, guid: 35e1332710ff7284eb2aa65add2a7497,
         type: 3}
       propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5969983385357487537, guid: 35e1332710ff7284eb2aa65add2a7497,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -12,7 +12,7 @@ public class DrawStatistics : MonoBehaviour
     }
 
     private void Start() {
-        GetStats(7);
+        //GetStats(7);
     }
 
     public void GetStats(int givenInt)
@@ -22,6 +22,7 @@ public class DrawStatistics : MonoBehaviour
             TextMeshProUGUI UIText = gameObject.GetComponent<TextMeshProUGUI>();
             // Load custom settings for Data, returns a list
             List<float> loadData = customSettings.LoadAccuracyNum(givenInt-1);
+            UIText.text = "";
             if (loadData != null)
             {
                 Debug.Log("data: "+loadData[0]);
@@ -30,13 +31,14 @@ public class DrawStatistics : MonoBehaviour
                 float totalNum = 0f;
                 foreach (float accuracy in loadData)
                 {
-                    totalNum += accuracy;
-                    Debug.Log("num: "+accuracy);
+                    totalNum += Mathf.Abs(accuracy);
+                    Debug.Log("num: "+Mathf.Abs(accuracy));
+                    UIText.text+=Mathf.Abs(accuracy)+",";
                 }
                 float averageAcc = totalNum/runTimes;
                 
                 // print values to screen
-                UIText.text = "Scene run: "+runTimes+"\nAverage stopping Accuracy: "+averageAcc;
+                UIText.text = UIText.text+"\nScene run: "+runTimes+"\nAverage stopping Accuracy: "+averageAcc;
             }else
             {
                 // No data found
@@ -50,6 +52,7 @@ public class DrawStatistics : MonoBehaviour
             TextMeshProUGUI UIText = gameObject.GetComponent<TextMeshProUGUI>();
             // Load custom settings for Data, returns a list
             List<float> loadData = customSettings.LoadCollisions();
+            UIText.text = "";
             if (loadData != null)
             {
                 Debug.Log("data: "+loadData[0]);
@@ -64,9 +67,11 @@ public class DrawStatistics : MonoBehaviour
                     if(objectHit == 1)
                     {
                         countPed++;
+                        UIText.text+="Ped,";
                     }else if(objectHit == 2)
                     {
                         countVehicle++;
+                        UIText.text+="Car,";
                     }
                 }
                 
@@ -101,6 +106,7 @@ public class DrawStatistics : MonoBehaviour
             TextMeshProUGUI UIText = gameObject.GetComponent<TextMeshProUGUI>();
             // Load custom settings for Data, returns a list
             List<float> loadData = customSettings.LoadObjectiveNum(levelInt-1);
+            UIText.text = "";
             if (loadData != null)
             {
                 Debug.Log("data: "+loadData[0]);
@@ -113,6 +119,7 @@ public class DrawStatistics : MonoBehaviour
                     totalCount += objective;
                     
                     Debug.Log("num: "+objective);
+                    UIText.text+=objective+",";
                 }
 
                 // Missed objectives = 2*runTimes - objectives

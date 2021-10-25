@@ -739,7 +739,7 @@ public class GamePlayLogic : MonoBehaviour
 
         while(travelPercent < 1f)
         {
-            travelPercent += Time.deltaTime * 0.2f; // Speed
+            travelPercent += Time.deltaTime * 0.25f; // Speed
             Car.transform.position = Vector3.Lerp(startPosition, endPosition, travelPercent);
             yield return new WaitForEndOfFrame();
         }

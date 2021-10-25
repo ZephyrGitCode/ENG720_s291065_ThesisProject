@@ -155,7 +155,7 @@ public class CustomSettings : MonoBehaviour
         return saveObjective;
     }
     
-    List<string> sceneList = new List<string>() {"1_ZebraCrossingSimple", "2_ZebraCrossingAdvanced", "3_StopSignSimple", "4_StopSignAdvanced", "5_RightofWaySimple", "6_RightofWaySimple"};
+    List<string> sceneList = new List<string>() {"1_ZebraCrossingSimple", "2_ZebraCrossingAdvanced", "3_StopSignSimple", "4_StopSignAdvanced", "5_RightofWaySimple", "6_RightofWayAdvanced"};
     
     public List<float> LoadAccuracyNum(int StatNum)
     {
@@ -245,6 +245,7 @@ public class CustomSettings : MonoBehaviour
 
     private void Start() {
         //LoadCollisions();
+        //ClearAllData(); -- debug
         //DebugData();
     }
 

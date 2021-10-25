@@ -2631,6 +2631,80 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e83389f2726cec4b805919daeccf2f6, type: 3}
+--- !u!1001 &158158509
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1357956865}
+    m_Modifications:
+    - target: {fileID: 3084872510708757648, guid: 95327e8ac12481b46a7f3a9e86d6f0b6,
+        type: 3}
+      propertyPath: m_Name
+      value: VehicleAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 3084872510708757655, guid: 95327e8ac12481b46a7f3a9e86d6f0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.3800001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3084872510708757655, guid: 95327e8ac12481b46a7f3a9e86d6f0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 3084872510708757655, guid: 95327e8ac12481b46a7f3a9e86d6f0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.7931035
+      objectReference: {fileID: 0}
+    - target: {fileID: 3084872510708757655, guid: 95327e8ac12481b46a7f3a9e86d6f0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3084872510708757655, guid: 95327e8ac12481b46a7f3a9e86d6f0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3084872510708757655, guid: 95327e8ac12481b46a7f3a9e86d6f0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3084872510708757655, guid: 95327e8ac12481b46a7f3a9e86d6f0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3084872510708757655, guid: 95327e8ac12481b46a7f3a9e86d6f0b6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 3084872510708757655, guid: 95327e8ac12481b46a7f3a9e86d6f0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3084872510708757655, guid: 95327e8ac12481b46a7f3a9e86d6f0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3084872510708757655, guid: 95327e8ac12481b46a7f3a9e86d6f0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3084872510708757655, guid: 95327e8ac12481b46a7f3a9e86d6f0b6,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 95327e8ac12481b46a7f3a9e86d6f0b6, type: 3}
 --- !u!1001 &158426676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6363,6 +6437,8 @@ MonoBehaviour:
   SignButton: {fileID: 0}
   RoadButton: {fileID: 1236494192}
   sceneScore: {fileID: 475054817}
+  stopSignBool: 0
+  road: 0
   score: 0
 --- !u!1001 &349651092
 PrefabInstance:
@@ -24235,7 +24311,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 406904, guid: 85ac88d7c46e0ea4583870a98cc13580, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 418126, guid: 85ac88d7c46e0ea4583870a98cc13580, type: 3}
       propertyPath: m_RootOrder
@@ -24323,7 +24399,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 499832, guid: 85ac88d7c46e0ea4583870a98cc13580, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 499832, guid: 85ac88d7c46e0ea4583870a98cc13580, type: 3}
       propertyPath: m_LocalPosition.y
@@ -37327,17 +37403,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrackedAlias
       objectReference: {fileID: 0}
+    - target: {fileID: 1883915491596086, guid: 114b3c3ce4645364a97c8f0803bed65b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4419020640412130, guid: 114b3c3ce4645364a97c8f0803bed65b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.587
+      value: 0.449
       objectReference: {fileID: 0}
     - target: {fileID: 4419020640412130, guid: 114b3c3ce4645364a97c8f0803bed65b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.002
+      value: -0.454
       objectReference: {fileID: 0}
     - target: {fileID: 4419020640412130, guid: 114b3c3ce4645364a97c8f0803bed65b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.112
+      value: 0.294
       objectReference: {fileID: 0}
     - target: {fileID: 4419020640412130, guid: 114b3c3ce4645364a97c8f0803bed65b, type: 3}
       propertyPath: m_LocalRotation.x

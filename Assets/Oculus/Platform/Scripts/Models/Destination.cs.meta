@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4e77b34378317ae45bcf619befd50009
+guid: 09e40dee6d23e9b4abe72b58d1ffd208
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -9,3 +9,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration (Deprecated)
+  packageVersion: 57.0.2-deprecated
+  assetPath: Assets/Oculus/Platform/Scripts/Models/Destination.cs
+  uploadId: 667590

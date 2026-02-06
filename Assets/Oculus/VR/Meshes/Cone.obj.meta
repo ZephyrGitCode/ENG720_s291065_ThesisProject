@@ -65,3 +65,10 @@ ModelImporter:
   animationType: 2
   additionalBone: 0
   userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration (Deprecated)
+  packageVersion: 57.0.2-deprecated
+  assetPath: Assets/Oculus/VR/Meshes/Cone.obj
+  uploadId: 667590

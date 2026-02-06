@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 64393802f44c0d94a86a01ccaf798bc0
+guid: fc6b7ed7de7fe3a4ab72d8745443cb5c
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -9,3 +9,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration (Deprecated)
+  packageVersion: 57.0.2-deprecated
+  assetPath: Assets/Oculus/Platform/Scripts/Models/NetSyncVoipAttenuationValue.cs
+  uploadId: 667590

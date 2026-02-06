@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c38f9350a9af0bb4e980bfd9db56d215
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration (Deprecated)
+  packageVersion: 57.0.2-deprecated
+  assetPath: Assets/Oculus/Platform/Samples/GroupPresenceSample/Scenes/GroupPresenceDemo.unity
+  uploadId: 667590

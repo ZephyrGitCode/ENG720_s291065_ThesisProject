@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System;
-using UnityEngine.VR;
+using UnityEngine.XR;
 
 public class GamePlayLogic : MonoBehaviour
 {

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7b0daa1a0dccfb64fb49843f7344778e
+guid: 57a29b14b1fc46642a78991fc30045db
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -9,3 +9,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration (Deprecated)
+  packageVersion: 57.0.2-deprecated
+  assetPath: Assets/Oculus/Platform/Scripts/ChallengeCreationType.cs
+  uploadId: 667590

@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 81519
+  packageName: Save Game Free - Gold Update
+  packageVersion: 2.4.0
+  assetPath: Assets/BayatGames/SaveGameFree/Scripts/SaveGame.cs
+  uploadId: 490783

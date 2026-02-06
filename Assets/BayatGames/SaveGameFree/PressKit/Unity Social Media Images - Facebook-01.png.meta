@@ -75,7 +75,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: ef82ac0ddc4e34e4ab13f0a444adabfe
+    spriteID: 5b5b8ef4eec0c5346beeed1cd0922c0f
     vertices: []
     indices: 
     edges: []
@@ -86,3 +86,11 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 81519
+  packageName: Save Game Free - Gold Update
+  packageVersion: 2.4.0
+  assetPath: Assets/BayatGames/SaveGameFree/PressKit/Unity Social Media Images -
+    Facebook-01.png
+  uploadId: 490783

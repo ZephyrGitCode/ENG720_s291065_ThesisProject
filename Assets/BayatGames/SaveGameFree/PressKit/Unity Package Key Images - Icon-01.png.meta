@@ -75,7 +75,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 3634e7047aee314428a88d0f79165b89
+    spriteID: 110e8241b33967e4f8d73ed5e96480af
     vertices: []
     indices: 
     edges: []
@@ -86,3 +86,10 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 81519
+  packageName: Save Game Free - Gold Update
+  packageVersion: 2.4.0
+  assetPath: Assets/BayatGames/SaveGameFree/PressKit/Unity Package Key Images - Icon-01.png
+  uploadId: 490783

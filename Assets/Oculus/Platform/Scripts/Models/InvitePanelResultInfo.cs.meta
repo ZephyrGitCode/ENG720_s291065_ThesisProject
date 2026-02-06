@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 743766f52ff7446488462ca8e6f22160
+guid: 023027fafb9ea3d4ab4ed00f527c00c0
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -9,3 +9,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration (Deprecated)
+  packageVersion: 57.0.2-deprecated
+  assetPath: Assets/Oculus/Platform/Scripts/Models/InvitePanelResultInfo.cs
+  uploadId: 667590

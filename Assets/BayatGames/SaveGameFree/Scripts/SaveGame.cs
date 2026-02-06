@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+
+using BayatGames.SaveGameFree.Encoders;
+using BayatGames.SaveGameFree.Serializers;
+
 using UnityEngine;
 using UnityEngine.Networking;
-
-using BayatGames.SaveGameFree.Serializers;
-using BayatGames.SaveGameFree.Encoders;
 
 namespace BayatGames.SaveGameFree
 {
@@ -821,9 +822,15 @@ namespace BayatGames.SaveGameFree
             if (IOSupported())
             {
 #if UNITY_WSA || UNITY_WINRT
-				UnityEngine.Windows.File.Delete ( filePath );
+                if (UnityEngine.Windows.File.Exists(filePath))
+                    UnityEngine.Windows.File.Delete(filePath);
+                else if (UnityEngine.Windows.Directory.Exists(filePath))
+                    UnityEngine.Windows.Directory.Delete(filePath, true);
 #else
-                File.Delete(filePath);
+                if (File.Exists(filePath))
+                    File.Delete(filePath);
+                else if (Directory.Exists(filePath))
+                    Directory.Delete(filePath, true);
 #endif
             }
             else
@@ -1040,7 +1047,9 @@ namespace BayatGames.SaveGameFree
             Application.platform != RuntimePlatform.WSAPlayerARM &&
             Application.platform != RuntimePlatform.WSAPlayerX64 &&
             Application.platform != RuntimePlatform.WSAPlayerX86 &&
+#if !UNITY_2017_3_OR_NEWER
             Application.platform != RuntimePlatform.SamsungTVPlayer &&
+#endif
             Application.platform != RuntimePlatform.tvOS &&
             Application.platform != RuntimePlatform.PS4;
         }

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2749aa58b2f956246a86652f32685c1a
+guid: d9d2d532af80aff47ab941ef4c49ee9d
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -9,3 +9,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration (Deprecated)
+  packageVersion: 57.0.2-deprecated
+  assetPath: Assets/Oculus/Platform/Scripts/NetSyncOptions.cs
+  uploadId: 667590

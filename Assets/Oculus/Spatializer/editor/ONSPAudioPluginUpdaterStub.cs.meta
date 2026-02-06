@@ -1,8 +1,7 @@
 fileFormatVersion: 2
-guid: 5b259be892529e7428b0787cd24c2521
-timeCreated: 1617833797
-licenseType: Store
+guid: 8e050a42861e6994f936aa7dc4159f84
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
   defaultReferences: []
   executionOrder: 0
@@ -10,3 +9,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration (Deprecated)
+  packageVersion: 57.0.2-deprecated
+  assetPath: Assets/Oculus/Spatializer/editor/ONSPAudioPluginUpdaterStub.cs
+  uploadId: 667590

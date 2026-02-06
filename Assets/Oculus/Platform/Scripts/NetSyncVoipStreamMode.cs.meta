@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 880c261a152ab9a4c9c6867698facd6d
+guid: 70d247ec313a0ef41b04310ba2aefa43
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -9,3 +9,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration (Deprecated)
+  packageVersion: 57.0.2-deprecated
+  assetPath: Assets/Oculus/Platform/Scripts/NetSyncVoipStreamMode.cs
+  uploadId: 667590
